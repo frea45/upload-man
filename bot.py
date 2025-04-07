@@ -2,7 +2,7 @@
 import os
 from pyrogram import Client, filters
 from pyrogram.types import Message
-from downloader_disk import download_file
+from downloader import download_file
 from uploader import upload_file
 from database import save_file_info
 import asyncio
