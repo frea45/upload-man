@@ -1,0 +1,26 @@
+version: "3.9"
+
+services:
+  bot:
+    build: .
+    container_name: link_to_file_bot
+    restart: always
+    environment:
+      - API_ID=your_api_id
+      - API_HASH=your_api_hash
+      - BOT_TOKEN=your_bot_token
+      - MONGO_URL=mongodb://mongo:27017
+      - DB_NAME=link_to_file_bot
+      - LOG_CHANNEL=-1001234567890
+    depends_on:
+      - mongo
+
+  mongo:
+    image: mongo:6
+    container_name: mongo
+    restart: always
+    volumes:
+      - mongo_data:/data/db
+
+volumes:
+  mongo_data:
