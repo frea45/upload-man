@@ -5,18 +5,23 @@ from database import save_file_info
 from downloader import download_file
 from uploader import upload_file
 import re
+
+# اضافه کردن Web Server
 from flask import Flask
 import threading
 
-app = Flask(__name__)
+web_app = Flask(__name__)
 
-@app.route('/')
+@web_app.route('/')
 def home():
     return "Bot is running!"
 
 def run_web():
-    app.run(host="0.0.0.0", port=8000)
+    web_app.run(host="0.0.0.0", port=8000)
 
+threading.Thread(target=run_web).start()
+
+# ادامه‌ی کد اصلی
 def is_direct_link(url: str) -> bool:
     return re.match(r'^https?://', url)
 
